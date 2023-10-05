@@ -11,7 +11,8 @@ const fetchCharacter = async ({ id }: CharacterParams): Promise<Character> => {
   const validatedData = characterSchema.safeParse(data);
 
   if (!validatedData.success) {
-    throw new Error("Invalid data", validatedData.error);
+    console.error("Invalid data", validatedData.error);
+    return data;
   }
 
   return validatedData.data;
