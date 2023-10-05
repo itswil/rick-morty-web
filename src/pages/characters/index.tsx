@@ -2,8 +2,6 @@ import { useGetCharacters } from "@/hooks/useCharactersQuery";
 import { LayoutHome } from "@/layouts/_home";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { z } from "zod";
 
 const charactersParamsSchema = z.object({
@@ -13,7 +11,6 @@ const charactersParamsSchema = z.object({
 export type CharactersParams = z.infer<typeof charactersParamsSchema>;
 
 export default function Characters() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const searchParamsObject = Object.fromEntries(searchParams);
   const validatedSearchParams =
@@ -23,22 +20,11 @@ export default function Characters() {
     throw new Error("Invalid search parameters");
   }
 
-  const [page, setPage] = useState(validatedSearchParams.data.page);
-
-  useEffect(() => {
-    setPage(validatedSearchParams.data.page);
-  }, [validatedSearchParams.data.page]);
+  const currentPage = validatedSearchParams.data.page;
 
   const { isLoading, data, error } = useGetCharacters({
-    page,
+    page: currentPage,
   });
-
-  const updateRoutePage = (newPage: number) => {
-    router.push({
-      pathname: router.pathname,
-      query: { page: newPage },
-    });
-  };
 
   return (
     <LayoutHome>
@@ -65,22 +51,28 @@ export default function Characters() {
 
       <div className="flex mt-8 mb-36">
         {data?.info.prev ? (
-          <button
-            onClick={() => updateRoutePage(page - 1)}
+          <Link
+            href={{
+              pathname: "/characters",
+              query: { page: currentPage - 1 },
+            }}
             className="hover:bg-slate-100 py-6 w-1/2"
           >
             ← Previous
-          </button>
+          </Link>
         ) : (
           <i className="w-1/2"></i>
         )}
         {data?.info.next ? (
-          <button
-            onClick={() => updateRoutePage(page + 1)}
+          <Link
+            href={{
+              pathname: "/characters",
+              query: { page: currentPage + 1 },
+            }}
             className="hover:bg-slate-100 py-6 w-1/2"
           >
             Next →
-          </button>
+          </Link>
         ) : (
           <i className="w-1/2"></i>
         )}
