@@ -56,7 +56,7 @@ export default function Characters() {
               pathname: "/characters",
               query: { page: currentPage - 1 },
             }}
-            className="hover:bg-slate-100 py-6 w-1/2"
+            className="hover:bg-slate-100 py-6 text-center w-1/2"
           >
             ← Previous
           </Link>
@@ -69,7 +69,7 @@ export default function Characters() {
               pathname: "/characters",
               query: { page: currentPage + 1 },
             }}
-            className="hover:bg-slate-100 py-6 w-1/2"
+            className="hover:bg-slate-100 py-6 text-center w-1/2"
           >
             Next →
           </Link>
