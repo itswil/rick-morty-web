@@ -1,9 +1,10 @@
-# Rick & Morty Web
+# 🧪 Rick & Morty Web 🪐
 
-Basic fetching of data from the Rick & Morty API with TanStack Query and full endpoint and routing validation with Zod
+> Basic fetching of data from the Rick & Morty API with TanStack Query and full endpoint and routing validation with Zod
 
 ## Development
 
 ```
+npm i
 npm run dev
 ```
