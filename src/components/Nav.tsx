@@ -18,6 +18,9 @@ export const Nav = () => {
       >
         Characters
       </Link>
+      <Link href={{ pathname: "/locations" }} className="mr-8">
+        Locations
+      </Link>
     </nav>
   );
 };

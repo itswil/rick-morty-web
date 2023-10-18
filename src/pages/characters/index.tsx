@@ -30,6 +30,8 @@ export default function Characters() {
     <LayoutHome>
       <h1>Characters</h1>
 
+      <p>These results are paginated (20 items per page), default of the API</p>
+
       {isLoading && <span>Loading...</span>}
 
       {error instanceof Error && <span>Error: {error.message}</span>}
